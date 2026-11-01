@@ -19,6 +19,9 @@ const path = require('node:path');
 const { EventEmitter } = require('node:events');
 
 // ---------------------------------------------------------------- config
+if (typeof process.loadEnvFile === 'function') {
+  try { process.loadEnvFile(); } catch { /* ignore if no .env */ }
+}
 const env = process.env;
 const PORT = Number(env.PORT || 8080);
 const HOST = env.HOST || '0.0.0.0';
